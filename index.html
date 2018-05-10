@@ -1,0 +1,182 @@
+<html>
+<head>
+<title> Sarkaree GUI Theme </title>
+<style type="text/css">
+  body {
+  margin:0; padding:0;
+   color:#fff; background: black;
+   }
+  .current{
+   position: relative; 
+  text-align:center; 
+  background: gray; width:100%; 
+  min-height: 1rem; max-height:2rem;
+  display: none;
+  }
+  .header {
+  width:100%;
+  border-top: 0.3rem solid gray;
+  display: inline-block;
+  position: relative;
+  z-index:10;
+  }
+  .headmenu {
+  float: left;
+  background: gray;
+  }
+  
+  .dockmenu {
+  float:right;
+  background: gray;
+  }
+  
+  .headdock {
+  background: gray;
+  width: 14rem;
+  height: 14rem;
+  z-index:15;
+  /*display:none;*/
+  }
+  
+  .headdock > div {
+  height: 6rem; 
+  width: 4rem;
+  border: 1px solid black;
+  display: inline-block;
+  margin: 0;
+  padding:0;
+  z-index:20;
+  }
+  
+  .window {
+   background: green;
+   border: 1px solid gray;
+   position: absolute;
+   top: 4rem;
+   left: 2rem;
+   min-width: 18rem;
+   min-height: 20rem;
+   width: 90%;
+   display: block;
+   border-radius: .2rem;
+   z-index:0;
+  }
+  
+  .windowbar {
+  width: 100%;
+  min-height:1.5rem;
+  color: red;
+  background: blue;
+  }
+  
+  .windowbar .title {
+  width: 88%;
+  display: inline-block;
+  height:100%;
+  }
+  
+  .windowbar .close {
+  width:10%;
+  display: inline-block;
+  text-align: right;
+  }
+  
+  .windowbar .closemenu {
+  display: inline;
+  float: right;
+  padding-top:0.5rem;
+  display:none;
+  }
+  
+  .windowbar .closemenu div{
+   min-width: 2rem;
+   border: 1px solid black;
+   display:inline-block;
+   text-align: center;
+  }
+  
+  .windowbar .windowmenu {
+  display: inline;
+  float: left;
+  padding-top:0.5rem;
+  height:1.3rem;
+  overflow:hidden;
+  width: 80%;
+  }
+  
+  /*.windowbar .windowmenu div.menu {
+  display:block;
+  font-size:.4rem;
+  }*/
+  
+  .windowbar .windowmenu div.ele {
+  min-width: 5rem;
+  border: 1px solid black;
+  display:inline-block;
+  text-align: center;
+  }
+</style>
+</head>
+<body>
+ <div class="current">Text</div>
+ <div class="header">
+  <div class="dockmenu">Time</div>
+  <div class="headmenu">:::</div>
+ </div>
+ <div class="headdock">
+  <div class="app">Text Editor</div>
+  <div class="app1">Web Browser</div>
+ </div>
+ 
+ <div class="window">
+  <div class="windowbar">
+   <div class="title">Text Editor</div>
+   <div class="close">x</div>
+   <div class="windowmenu">
+   <div class="ele">File</div>
+   <div class="ele">Edit</div>
+   <div class="ele">View</div>
+   </div>
+   <div class="closemenu">
+    <div>()</div>
+    <div>_</div>
+    <div>x</div>
+   </div>
+  </div>
+ </div>
+ <script src="assets/javascripts/jquery.min.js"></script>
+ <script src="assets/javascripts/jquery-ui/jquery-ui.js"></script>
+ <script src="assets/javascripts/jquery-touch.min.js"></script>
+ <script>
+ 
+ $(window).on("click", function(e) {
+ });
+ 
+ $(".headmenu").on('click', function() {
+   $(".headdock").show();
+ });
+ 
+var windowtitle= $( ".title" );
+windowtitle.click(function(e) {
+  $(".windowmenu").toggle();
+  $(".closemenu").hide();
+});
+
+$( ".window" ).draggable({
+  handle: ".title"
+});
+
+var close= $( ".close" );
+close.click(function(e) {
+  $(".windowmenu").hide();
+  $(".closemenu").toggle();
+});
+
+
+ $(".window").resizable({
+   handles: "e"
+ });
+
+ </script>
+</body>
+</html>
