@@ -4,7 +4,7 @@
 <style type="text/css">
   body {
   margin:0; padding:0;
-   color:#fff; background: black;
+   color:#fff; background: url('./assets/images/background.jpg');
    }
   .current{
    position: relative; 
@@ -15,12 +15,17 @@
   }
   .header {
   width:100%;
-  border-top: 0.3rem solid gray;
+  border-top: 0.4rem solid gray;
   display: inline-block;
   position: relative;
   z-index:10;
   }
   .headmenu {
+border-bottom-right-radius: 6px;
+    font-size: 32px;
+    padding: 0 0 0.15rem;
+    text-align: center;
+    line-height: 0.9;
   float: left;
   background: gray;
   }
@@ -28,14 +33,26 @@
   .dockmenu {
   float:right;
   background: gray;
+  border-bottom-left-radius: 4px;
   }
   
+  .dockmenu > div {
+  display: inline;
+  }
+
+  .dockmenu > div.shutdown {
+    font-size: 25px;
+    border-radius: 10px;
+    padding: 0 7px;
+    line-height: 0.5;
+  }
+
   .headdock {
   background: gray;
   width: 14rem;
   height: 14rem;
   z-index:15;
-  /*display:none;*/
+  display:none;
   }
   
   .headdock > div {
@@ -49,14 +66,14 @@
   }
   
   .window {
-   background: green;
+   background: white;
    border: 1px solid gray;
    position: absolute;
    top: 4rem;
    left: 2rem;
    min-width: 18rem;
    min-height: 20rem;
-   width: 90%;
+   width: 40%;
    display: block;
    border-radius: .2rem;
    z-index:0;
@@ -66,7 +83,7 @@
   width: 100%;
   min-height:1.5rem;
   color: red;
-  background: blue;
+  background: #00b3ff;
   }
   
   .windowbar .title {
@@ -118,9 +135,11 @@
 </style>
 </head>
 <body>
- <div class="current">Text</div>
  <div class="header">
-  <div class="dockmenu">Time</div>
+  <div class="dockmenu">
+   <div class="time"></div>
+   <div class="shutdown">x</div>
+  </div>
   <div class="headmenu">:::</div>
  </div>
  <div class="headdock">
@@ -176,6 +195,27 @@ close.click(function(e) {
  $(".window").resizable({
    handles: "e"
  });
+
+ function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+ }
+
+ function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  $('.dockmenu > .time').html(h + ":" + m + ":" + s);
+  t = setTimeout(function() {
+    startTime()
+  }, 500);
+ }
+startTime();
 
  </script>
 </body>
